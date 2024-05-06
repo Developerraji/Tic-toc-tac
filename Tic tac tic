@@ -1,0 +1,70 @@
+
+Def display_board(board):
+ Print(board[0] + ‘ | ‘ + board[1] + ‘ | ‘ + board[2])
+ Print(‘--+---+--‘)
+ Print(board[3] + ‘ | ‘ + board[4] + ‘ | ‘ + board[5])
+ Print(‘--+---+--‘)
+ Print(board[6] + ‘ | ‘ + board[7] + ‘ | ‘ + board[8])
+Def check_win(board, player):
+ Win_conditions = [
+ [0, 1, 2], [3, 4, 5], [6, 7, 8], # Rows
+ [0, 3, 6], [1, 4, 7], [2, 5, 8], # Columns
+ [0, 4, 8], [2, 4, 6] # Diagonals
+ ]
+ For condition in win_conditions:
+ If all(board[pos] == player for pos in condition):
+ Return True
+ Return False
+Def check_draw(board):
+ Return ‘-‘ not in board
+Def tic_tac_toe():
+ Board = [‘-‘ for _ in range(9)]
+ Players = [‘X’, ‘O’]
+ Current_player = 0
+While True:
+
+ Display_board(board)
+
+ Player_input = input(f”Player {players[current_player]}, enter your position (1-9): “)
+
+ Try:
+
+ Position = int(player_input) – 1
+
+ If position < 0 or position > 8:
+
+ Print(“Invalid position. Please enter a number between 1 and 9.”)
+
+ Continue
+
+ If board[position] != ‘-‘:
+
+ Print(“Position already taken. Please choose another position.”)
+
+ Continue
+
+ Board[position] = players[current_player]
+
+ If check_win(board, players[current_player]):
+
+ Display_board(board)
+
+ Print(f”Player {players[current_player]} wins!”)
+
+ Break
+
+ Elif check_draw(board):
+
+ Display_board(board)
+
+ Print(“It’s a draw!”)
+
+ Break
+
+ Current_player = (current_player + 1) % 2
+
+ Except ValueError:
+
+ Print(“Invalid input. Please enter a number.”)
+
+Tic_tac_toe()
